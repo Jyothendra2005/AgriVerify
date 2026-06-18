@@ -64,9 +64,3 @@ npm start
 ```
 
 ---
-
-## 🌐 Deployment from Google AI Studio
-
-AgriVerify can be deployed effortlessly using the tools built directly inside Google AI Studio:
-- **Cloud Run Portability**: Fully compatible with automated container ingress routing.
-- **Export System**: Export the entire source tree to a GitHub Repository or share a live web preview link via the Google AI Studio Share workflow panel.
