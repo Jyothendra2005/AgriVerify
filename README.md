@@ -1,20 +1,88 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# AgriVerify
 
-# Run and deploy your AI Studio app
+AgriVerify is a highly accessible, farmer-friendly, multi-regional language agricultural chat application equipped with real-time text-to-speech, interactive audio transcription, visual identification utilities, and robust scientific curation. 
 
-This contains everything you need to run your app locally.
+Designed for smallholders across diverse geographies, AgriVerify matches farmer queries against local agronomical database registries first before securely consulting Google Gemini LLM fallback pipelines. When fallback pipelines are triggered, an automated review flow queues recommendations for human curation under the **Expert Review Board** dashboard, ensuring only high-quality, farmer-safe guidelines reach local communities.
 
-View your app in AI Studio: https://ai.studio/apps/bc8d7ac9-be88-4ce7-9831-a4a6dee2cdf3
+---
 
-## Run Locally
+## 🛠 Features
 
-**Prerequisites:**  Node.js
+- **Multi-Regional Multimodality**: Farmers can seamlessly ask questions in English, Telugu, Hindi, Kannada, Tamil, Marathi, or Bengali.
+- **Vocal Empowerment**: Integrated Web Speech API features for regional language Speech-To-Text (STT) transcribe query logs, accompanied by instant Text-To-Speech (TTS) readout of scientific answers.
+- **Curation Pipeline & Expert Review Board**: Protects farmers from hallucinated material. If a query requires the AI Fallback (Tier 3), it goes into a review queue where expert scientists can review, edit, approve, or reject advice before it goes live.
+- **Slick, Focused Design**: Clean, visual layout using fluid container dimensions, custom typography accents (featuring "Inter" and "JetBrains Mono"), custom status boards, and rich visual controls.
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🚀 Google AI Studio Integration
+
+AgriVerify was prototyped, built, and is powered directly in integration with **Google AI Studio** (https://ai.studio/build):
+
+### 1. Unified Development Environment
+The application is fully integrated into the Google AI Studio ecosystem, facilitating rapid, iterative, server-side prototyping. Workspace capabilities, dependencies, and environment configurations are orchestrated seamlessly via AI Studio's sandboxed container architecture.
+
+### 2. Secure Server-Side Gemini API Keys
+AgriVerify uses the `@google/genai` SDK to run advanced multilingual agricultural analysis. 
+- To avoid exposing credentials on the client browser, API requests are routed securely through our integrated back-end Express proxy (`server.ts`).
+- **Google AI Studio** manages the `GEMINI_API_KEY` environment secret out of the box. During production deployment or shared previews, Google AI Studio injects the credentials directly into the container variables safely and invisibly.
+
+### 3. Model Architecture
+AgriVerify utilizes server-side **Gemini** models to translate, understand, and construct clear, farmer-safe, region-specific guidelines under Gemini's high-context scientific expertise.
+
+---
+
+## 🧱 Technical Architecture
+
+AgriVerify is built as a **Full-Stack Web Application**:
+
+1. **Frontend (SPA)**: Built using **React (v18+)**, **TypeScript**, and **Vite**, utilizing **Tailwind CSS** for visual consistency and layouts.
+2. **Backend**: An **Express** mock server configured in `server.ts` handles:
+   - Client asset distribution
+   - Local dictionary lookup matches (Tier 1 & Tier 2 query parsing)
+   - Proxying fallback queries securely to the **Gemini API** using `process.env.GEMINI_API_KEY`
+   - Cointainerization and standard HTTP routing over port `3000`
+
+---
+
+## 📦 Local Installation & Setup
+
+If you have exported this codebase from Google AI Studio to GitHub or downloaded a ZIP archive, you can run and develop it locally using the following steps:
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) installed on your system.
+
+### 1. Clone & Install Dependencies
+First, clone the repository (or extract the zip) and install npm packages:
+```bash
+npm install
+```
+
+### 2. Configure Environment Variables
+Create a `.env` file in the root directory and define your Google Gemini key:
+```bash
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+*(Reference `.env.example` in the repository for necessary variables).*
+
+### 3. Run Development Server
+Start the development server with Hot Module Replacement:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+### 4. Build Code & Start Production Server
+To build compile-safe, production-bundled code and start the Node.js production service:
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🌐 Deployment from Google AI Studio
+
+AgriVerify can be deployed effortlessly using the tools built directly inside Google AI Studio:
+- **Cloud Run Portability**: Fully compatible with automated container ingress routing.
+- **Export System**: Export the entire source tree to a GitHub Repository or share a live web preview link via the Google AI Studio Share workflow panel.
