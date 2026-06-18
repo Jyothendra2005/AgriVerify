@@ -1,0 +1,6 @@
+{
+  "name": "AgriVerify",
+  "description": "AgriVerify - A farmer-friendly regional language agricultural chat interface with voice support and secure verification lookup.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
