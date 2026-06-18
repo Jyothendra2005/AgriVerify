@@ -15,23 +15,6 @@ Designed for smallholders across diverse geographies, AgriVerify matches farmer 
 
 ---
 
-## 🚀 Google AI Studio Integration
-
-AgriVerify was prototyped, built, and is powered directly in integration with **Google AI Studio** (https://ai.studio/build):
-
-### 1. Unified Development Environment
-The application is fully integrated into the Google AI Studio ecosystem, facilitating rapid, iterative, server-side prototyping. Workspace capabilities, dependencies, and environment configurations are orchestrated seamlessly via AI Studio's sandboxed container architecture.
-
-### 2. Secure Server-Side Gemini API Keys
-AgriVerify uses the `@google/genai` SDK to run advanced multilingual agricultural analysis. 
-- To avoid exposing credentials on the client browser, API requests are routed securely through our integrated back-end Express proxy (`server.ts`).
-- **Google AI Studio** manages the `GEMINI_API_KEY` environment secret out of the box. During production deployment or shared previews, Google AI Studio injects the credentials directly into the container variables safely and invisibly.
-
-### 3. Model Architecture
-AgriVerify utilizes server-side **Gemini** models to translate, understand, and construct clear, farmer-safe, region-specific guidelines under Gemini's high-context scientific expertise.
-
----
-
 ## 🧱 Technical Architecture
 
 AgriVerify is built as a **Full-Stack Web Application**:
@@ -80,9 +63,3 @@ npm start
 ```
 
 ---
-
-## 🌐 Deployment from Google AI Studio
-
-AgriVerify can be deployed effortlessly using the tools built directly inside Google AI Studio:
-- **Cloud Run Portability**: Fully compatible with automated container ingress routing.
-- **Export System**: Export the entire source tree to a GitHub Repository or share a live web preview link via the Google AI Studio Share workflow panel.
