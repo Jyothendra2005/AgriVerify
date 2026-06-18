@@ -499,6 +499,10 @@ async function startServer() {
   });
 }
 
-startServer().catch(err => {
-  console.error("Failed to start AgriVerify server:", err);
-});
+if (!process.env.VERCEL) {
+  startServer().catch(err => {
+    console.error("Failed to start AgriVerify server:", err);
+  });
+}
+
+export default app;
